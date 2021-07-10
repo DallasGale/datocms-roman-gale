@@ -6,6 +6,7 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-postcss',
+    `gatsby-plugin-sass`,
     {
       resolve: "gatsby-source-datocms",
       options: {

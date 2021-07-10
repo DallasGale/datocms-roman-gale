@@ -2,7 +2,8 @@ import React from "react";
 import Image from "gatsby-image";
 import { StructuredText } from "react-datocms";
 
-export default function PostBody({ content }) {
+export default function PostBody({ content, gallery }) {
+  console.log("gallery", gallery)
   return (
     <div className="max-w-2xl mx-auto">
       <div className="prose prose-lg prose-blue">
@@ -21,6 +22,23 @@ export default function PostBody({ content }) {
             );
           }}
         />
+
+        {
+           gallery !== null  && (
+            <div class="gallery">
+              {
+                gallery.map((img) => {
+                  return (
+                    <div className="gallery__item">
+                      <Image fluid={img.fluid} />
+                    </div>
+                  )
+                 })
+              }
+            </div>
+           )
+           }
+
       </div>
     </div>
   );

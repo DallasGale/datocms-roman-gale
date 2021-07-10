@@ -20,7 +20,7 @@ export default function Post({ data: { site, post, morePosts } }) {
           date={post.date}
           author={post.author}
         />
-        <PostBody content={post.content} />
+        <PostBody content={post.content} gallery={post.photos} />
       </article>
       <SectionSeparator />
       {morePosts.nodes.length > 0 && <MoreStories posts={morePosts.nodes} />}
@@ -79,6 +79,14 @@ export const query = graphql`
           }
         }
       }
+      photos {
+        fluid(
+          imgixParams: { fm: "jpg" }
+          sizes: "(max-width: 1500px) 100vw, 1500px"
+        ) {
+          ...GatsbyDatoCmsFluid
+        }
+      }
     }
     morePosts: allDatoCmsPost(
       sort: { fields: date, order: DESC }
@@ -98,6 +106,7 @@ export const query = graphql`
             ...GatsbyDatoCmsFluid
           }
         }
+      
         author {
           name
           picture {

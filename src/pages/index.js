@@ -67,6 +67,15 @@ export const query = graphql`
             }
           }
         }
+        photos {
+          fixed(
+            width: 48
+            height: 48
+            imgixParams: { fm: "jpg", fit: "crop", sat: -100 }
+          ) {
+            ...GatsbyDatoCmsFixed
+          }
+        }
       }
     }
   }
