@@ -10,9 +10,7 @@ export default function CoverImage({ title, fluid, slug }) {
         ...fluid,
         alt: `Cover Image for ${title}`,
       }}
-      className={cn('shadow-small', {
-        'hover:shadow-medium transition-shadow duration-200': slug,
-      })}
+      style={{height: "50vh"}}
     />
   )
   return (
