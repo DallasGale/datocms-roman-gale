@@ -1,1 +1,8 @@
-@import "./gallery";
+@import "./helpers.scss";
+@import "./variables.scss";
+@import "./media_queries.scss";
+@import "./global.scss";
+
+// Components
+@import "./components/ui/header.scss";
+@import "./components/ui/navigation.scss";

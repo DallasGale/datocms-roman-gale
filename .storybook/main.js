@@ -1,3 +1,6 @@
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const devMode = process.env.NODE_ENV !== "production";
+
 module.exports = {
   // You will want to change this to wherever your Stories will live
   stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
@@ -7,6 +10,15 @@ module.exports = {
     builder: "webpack5",
   },
   webpackFinal: async (config) => {
+    config.module.rules.push({
+      test: /\.(sa|sc|c)ss$/,
+      use: [
+        devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+        "css-loader",
+        "postcss-loader",
+        "sass-loader",
+      ],
+    });
     // transpile Gatsby module because Gatsby includes un-transpiled ES6 code.
     config.module.rules[0].exclude = [/node_modules\/(?!(gatsby)\/)/];
 
